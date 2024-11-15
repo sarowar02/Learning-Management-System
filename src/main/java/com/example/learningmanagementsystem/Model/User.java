@@ -1,9 +1,9 @@
 package com.example.learningmanagementsystem.Model;
 
 import jakarta.persistence.*;
-import org.hibernate.mapping.Set;
 
 import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class User {
