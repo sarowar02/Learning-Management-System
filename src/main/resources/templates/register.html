@@ -52,13 +52,13 @@
         <!--First name-->
         
 <!--SUCCESS message-->
-       <div>
-         <th:block th:if="${session.msg}">
-          <p class="success" >[[${session.msg}]]</p>
-          <!--Show then remove message  -->
-          <th:block th:text="${@userServiceImplementation.removeSessionMessage()}"></th:block>
-       </th:block>
-    </div>
+<!--       <div>-->
+<!--         <th:block th:if="${session.msg}">-->
+<!--          <p class="success" >[[${session.msg}]]</p>-->
+<!--          &lt;!&ndash;Show then remove message  &ndash;&gt;-->
+<!--          <th:block th:text="${@userServiceImplementation.removeSessionMessage()}"></th:block>-->
+<!--       </th:block>-->
+<!--    </div>-->
     
         <div class="box">
           <label for="firstname" class="fl fontLabel"> First Name </label>
@@ -118,9 +118,9 @@
 
               <div class="fr" style="">
                   <select name="role" class="role"  required>
-                        <option value="STUDENT" >STUDENT</option>
-                        <option value="TEACHER">TEACHER</option>
-                        <option value="ADMIN">ADMIN</option>
+                        <option value="ROLE_STUDENT" >STUDENT</option>
+                        <option value="ROLE_TEACHER">TEACHER</option>
+                        <option value="ROLE_ADMIN">ADMIN</option>
                   </select>
               </div>
               <div class="clr"></div>
@@ -146,12 +146,6 @@
           <input type="Submit" name="Submit" class="submit" value="SUBMIT" />
         </div>
         <!---Submit Button----->
-   
-           
-        <th:block th:if="${session.msg}">
-        <p style="color:red">[[${session.msg}]]</p>
-        <!--  <th:block th:text="${#session.removeAttribute('msg')}"></th:block> -->
-        </th:block>
     
     
       </form>

@@ -17,7 +17,7 @@ public class SecurityConfig {
         http
                 .csrf(csrf -> csrf.disable()) // Disable CSRF
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers( "/","/css/**", "/js/**", "/image/**","/webjars/**").permitAll()
+                        .requestMatchers("/", "/css/**", "/js/**", "/image/**","/webjars/**").permitAll()
                         .requestMatchers("/register", "/login").permitAll()
                         .requestMatchers("/admin/**").hasRole("ADMIN")
                         .requestMatchers("/teacher/**").hasRole("TEACHER")
@@ -26,7 +26,16 @@ public class SecurityConfig {
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
-                        .defaultSuccessUrl("/profile", true)
+                        .successHandler((request, response, authentication) -> {
+                            String role = authentication.getAuthorities().toString();
+                            if (role.contains("ROLE_ADMIN")) {
+                                response.sendRedirect("/admin");
+                            } else if (role.contains("ROLE_TEACHER")) {
+                                response.sendRedirect("/teacher");
+                            } else if (role.contains("ROLE_STUDENT")) {
+                                response.sendRedirect("/student");
+                            }
+                        })
                 )
                 .logout(logout -> logout
                         .logoutUrl("/logout")
