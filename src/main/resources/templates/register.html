@@ -1,21 +1,161 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
+
 <head>
-    <title>Register</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/71258d5dfb.js" crossorigin="anonymous"></script>
+    <title>LMS University Project</title>
+    <link rel="stylesheet" href="" th:href="@{/css/index.css}" />
+    <link href="" th:href="@{/css/register.css}" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
-<body>
-    <form action="/register" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <label for="role">Role:</label>
-        <select id="role" name="role">
-            <option value="ADMIN">Admin</option>
-            <option value="TEACHER">Teacher</option>
-            <option value="STUDENT">Student</option>
-        </select>
-        <button type="submit">Register</button>
-    </form>
-</body>
+  <body>
+  
+     
+    <!--Header Start  -->
+
+    <header>
+      <div class="logo">
+        <img src="" alt="cseLogo" />
+      </div>
+      <div class="nav">
+        <input type="checkbox" id="check" />
+        <label for="check" class="checkbtn">
+          <i class="fas fa-bars"></i>
+        </label>
+
+        <ul>
+          <li><a href="/" style="color: crimson">Home</a></li>
+          <li><a href="#"> About </a></li>
+          <li><a href="#">Something</a></li>
+          <li>
+            <a href="sigin" style="color: crimson">Login OR Register</a>
+          </li>
+        </ul>
+        
+        
+      </div>
+    </header>
+        
+       
+     
+  
+    
+        
+    <!-- Body of Form starts -->
+    
+   
+    
+    <div class="container">
+    
+      <form action="/register" method="post">
+        <!--First name-->
+        
+<!--SUCCESS message-->
+       <div>
+         <th:block th:if="${session.msg}">
+          <p class="success" >[[${session.msg}]]</p>
+          <!--Show then remove message  -->
+          <th:block th:text="${@userServiceImplementation.removeSessionMessage()}"></th:block>
+       </th:block>
+    </div>
+    
+        <div class="box">
+          <label for="firstname" class="fl fontLabel"> First Name </label>
+          <div class="fr">
+            <input
+              type="text"
+              name="firstname"
+              placeholder="Enter First Name"
+              class="textBox"
+              
+              required
+            />
+          </div>
+          <div class="clr"></div>
+        </div>
+        <!--First name-->
+
+          <br>
+
+        <!--Second name-->
+        <div class="box">
+          <label for="lastname" class="fl fontLabel"> Seconed Name</label>
+          <div class="fr">
+            <input
+              type="text"
+              required
+              name="lastname"
+              placeholder="Enter Last Name"
+              class="textBox"
+            />
+          </div>
+          <div class="clr"></div>
+        </div>
+        <!--Second name-->
+
+          <br>
+
+        <!---Email ID---->
+        <div class="box">
+          <label for="email" class="fl fontLabel"> Email </label>
+
+          <div class="fr">
+            <input
+              type="email"
+              required
+              name="email"
+              placeholder="Enter Email"
+              class="textBox"
+            />
+          </div>
+          <div class="clr"></div>
+        </div>
+          <br>
+          <!---Role---->
+          <div  class="box">
+              <label for="role" class="fl fontLabel"> Role </label>
+
+              <div class="fr" style="">
+                  <select name="role" class="role"  required>
+                        <option value="STUDENT" >STUDENT</option>
+                        <option value="TEACHER">TEACHER</option>
+                        <option value="ADMIN">ADMIN</option>
+                  </select>
+              </div>
+              <div class="clr"></div>
+          </div>
+          <br>
+        <div class="box">
+          <label for="password" class="fl fontLabel"> Password </label>
+          <div class="fr">
+            <input
+              type="Password"
+              required
+              name="password"
+              placeholder="Enter Password"
+              class="textBox"
+            />
+          </div>
+          <div class="clr"></div>
+        </div>
+
+
+          <br><br>
+        <div class="box">
+          <input type="Submit" name="Submit" class="submit" value="SUBMIT" />
+        </div>
+        <!---Submit Button----->
+   
+           
+        <th:block th:if="${session.msg}">
+        <p style="color:red">[[${session.msg}]]</p>
+        <!--  <th:block th:text="${#session.removeAttribute('msg')}"></th:block> -->
+        </th:block>
+    
+    
+      </form>
+    </div>
+    <!--Body of Form ends--->
+  </body>
 </html>

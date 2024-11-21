@@ -1,7 +1,7 @@
 package com.example.learningmanagementsystem.Controller;
 
-import com.example.learningmanagementsystem.Model.*;
 import com.example.learningmanagementsystem.Repository.*;
+import com.example.learningmanagementsystem.Model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -19,32 +19,46 @@ public class AuthController {
     private UserRepository userRepository;
 
     @Autowired
-    private RoleRepository roleRepository;
-
-    @Autowired
     private PasswordEncoder passwordEncoder;
 
     @GetMapping("/register")
-    public String showRegistrationForm() {
+    public String register() {
         return "register";
     }
 
     @PostMapping("/register")
-    public String registerUser(@RequestParam String username, @RequestParam String password, @RequestParam String role) {
+    public String registerUser(@RequestParam String firstname,@RequestParam String lastname, @RequestParam String email, @RequestParam String password, @RequestParam String role) {
         User user = new User();
-        user.setUsername(username);
+        user.setFirstname(firstname);
+        user.setLastname(lastname);
+        user.setEmail(email);
         user.setPassword(passwordEncoder.encode(password));
-
-        Set<Role> roles = new HashSet<>();
-        roles.add(roleRepository.findByName(role.toUpperCase()));
-        user.setRoles(roles);
-
+        user.setRole(role);
         userRepository.save(user);
-        return "redirect:/login";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
-    public String showLoginForm() {
+    public String login() {
         return "login";
+    }
+    @PostMapping("/login")
+    public String loginUser(@RequestParam String email, @RequestParam String password,@RequestParam String role) {
+        User user = userRepository.findByEmail(email);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            String str = user.getRole();
+            if(str.equals("ADMIN")){
+                return "redirect:/admin";
+            }
+            else if(str.equals("TEACHER")){
+                return "redirect:/teacher";
+            }
+            else if(str.equals("STUDENT")) {
+                return "redirect:/student";
+            }
+            else System.out.println("Invalid Role");
+        }
+        else System.out.println("Invalid User");
+        return "redirect:/login";
     }
 }

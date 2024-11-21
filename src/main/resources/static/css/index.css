@@ -1,0 +1,374 @@
+
+.checkbtn
+{
+  display: none;
+  font-size: 30px;
+  color: rgba(0,0,0,0.9);
+  float: right;
+  line-height: 80px;
+  margin-right: -170px;
+
+
+}
+
+h2{
+  color: red;
+}
+#check
+{
+  display: none;
+}
+
+@media(max-width:768px)
+{
+  header
+  {
+    width: 100%;
+    height: auto;
+
+  }
+  header .logo
+  {
+    margin-left: 30px;
+    padding: 20px;
+
+  }
+  .checkbtn{
+    display: block;
+    
+
+  }
+  header .nav ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #f9f9f9;
+    top: 54px;
+    left: -200%;
+    transition: all 1s;
+  }
+  header .nav ul li
+  {
+    line-height: 30px;
+    clear: both;
+    margin-top: 15px;
+
+  }
+#check:checked ~ul{
+  left: 0;
+}
+header .nav ul li a{
+  font-size: 20px;
+  text-align: center;
+}
+
+
+}
+
+
+
+@media(max-width:768px){
+
+  .section1{
+    width: 100%;
+    height: auto;
+    display: block;
+
+  }
+  .half1{
+    margin: auto;
+    padding: 0;
+    
+  }
+  .half2 img
+  {
+    margin-left: 90px;
+    margin-top: 30px;
+    max-width: 100%;
+    height: auto;
+  }
+  .section2{
+    display: block;
+    width: 100%;
+    height: 100vh;
+    top:150px;
+    position: relative;
+
+  }
+
+  
+
+}
+
+
+
+
+
+
+
+
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+ 
+
+}
+header {
+  width: 100%;
+  height: 70px;
+ position: fixed;
+ top: 0;
+ background-color: #fff;
+
+}
+header div {
+  float: left;
+  justify-content: space-between;
+}
+header .logo {
+    margin-left:20px;
+    padding: 20px;
+
+
+    
+  
+    
+
+}
+
+header .nav {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 300px;
+}
+header .nav ul {
+  list-style: none;
+}
+header .nav li {
+  float: left;
+  padding-right: 40px;
+  padding-top: 10px;
+}
+header .nav li a {
+  text-decoration: none;
+  color: rgb(41, 41, 41);
+  text-transform: uppercase;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+header .nav li a:hover {
+  color: crimson;
+}
+.section1
+{
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 658px; 
+  display: flex;
+  align-items: center;
+  margin-top: 70px;
+  justify-content:space-between ;
+}
+.half1, half2
+{
+  width: 50%;
+
+}
+.half1
+{
+  margin-left: 230px;
+  margin-bottom: 120px;
+
+}
+.half2
+{
+  padding-right: 160px;
+  margin-top: 50px;
+
+}
+.half2 img
+{
+  max-width: 100%;
+  height: auto; 
+}
+.half1 h3
+{
+  font-weight: normal;
+
+}
+.half1 h1
+{
+  font-size: 50px;
+}
+.half1 p
+{
+  color:rgba(78, 78, 78, 0.7);
+}
+.half1 input
+{
+  padding: 8px 20px;
+  background-color:#8393ff ;
+  outline: none;
+  color: white;
+  border: 1px solid #8393ff ;
+  font-size: 15px;
+
+}
+.half1 input:hover
+{
+  box-shadow: 5px 10px rgba(130,147,255,0.5);
+  transition:all 0.5s ease-in 0.1s;
+
+  
+}
+
+.section2
+{
+  background-color:#fff;
+  width: 100%;
+  height: 658px; 
+  display: flex;
+  align-items: center;
+  justify-content:space-between ;
+
+}
+.section2 div
+{
+  width: 40%;
+  margin: 0 auto;
+
+}
+.section2 img
+{
+  width: 90%;
+  height: auto;
+}
+
+
+
+
+.section3
+{
+  width: 100%;
+  height: 650px;
+  margin: 0 auto;
+  text-align: center;
+
+}
+.team h1
+{
+  font-size: 40px;
+  line-height: 10px;
+  
+
+}
+.team p
+{
+  width: 500px;
+  color: rgba( 0,0,0,0.5);
+  text-align: center;
+  margin: 0 auto;
+
+}
+.photo
+{
+  width: 100%;
+  margin: 0 auto;
+}
+.part1
+{
+  padding-top: 50px;
+  width: 100%;
+  overflow: hidden;
+}
+
+.part2
+{
+  padding-top: 50px;
+  width: 100%;
+  overflow: hidden;
+}
+.part1 div
+{
+  width: 30%;
+  align-self: center;
+  padding: 5px;
+  margin: 0 auto;
+}
+.part1 img
+{
+  width: 50%;
+}
+.part1 div:hover
+{
+  
+  background-color: #f9f9f9;
+}
+
+
+.part2 div
+{
+  width: 30%;
+  float: left;
+  padding: 5px;
+  margin: 0 auto;
+}
+.part2 img
+{
+  width: 40%;
+}
+.part2 div:hover
+{
+  
+  background-color: #f9f9f9;
+}
+
+footer
+{
+  background-color: rgb(4,9,30);
+  width: 100%;
+  height: 400px;
+  position: absolute;
+  margin-top: 190px;
+
+}
+footer .foot
+{
+  width: 80%;
+  height: auto;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto;
+  margin-top: 100px;
+  color: wheat;
+
+}
+footer .foot p
+{
+  color: rgba(255,255,255,0.5);
+}
+footer .foot .foot1 input
+{
+  font-size: 15px;
+  outline: none;
+  border: none;
+  padding: 10px 150px 10px 10px ;
+}
+
+footer .foot .foot1 button
+{
+  font-size: 18px;
+  color: white;
+  outline: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px 15px;
+  background-color:#8393ff ;
+
+}
+

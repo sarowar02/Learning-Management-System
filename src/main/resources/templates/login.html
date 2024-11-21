@@ -1,15 +1,82 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/71258d5dfb.js" crossorigin="anonymous">
+    </script>
+    <title>LMS University Project</title>
+
+    <link rel="stylesheet"  th:href="@{css/style.css}">
+    <link rel="stylesheet"  th:href="@{css/index.css}">
 </head>
 <body>
-    <form action="/login" method="post">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username" required>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-        <button type="submit">Login</button>
-    </form>
+
+  <!--Header Start  -->
+    
+    <header>
+        <div class="logo">
+            <img src="" alt="cseLogo">
+        </div>
+        <div class="nav">
+
+
+            <input type="checkbox" id="check">
+            <label for="check" class="checkbtn">
+                <i class="fas fa-bars"></i>
+                
+            </label>
+
+
+
+            <ul>
+                <li><a href="/" style="    color: crimson; ">Home</a> </li>
+                <li><a href="#"> About </a></li>
+                <li><a href="#">Something</a> </li>
+                <li><a href="sigin"  style="    color: crimson; ">Login OR Register</a> </li>
+            </ul>
+
+        </div>
+
+    </header>
+    
+     
+    <div class="main">
+        <div class="main-left "> 
+            <img src="" th:src="@{/image/R.jpg}"alt="login">   
+        </div>
+        <div class="main-right">
+
+            <form action="/login" method="post" >
+                <h2>Welcome Back!</h2>
+               <p>Welcome to  E-Learning Management System</p> <br><br>
+                <div class="input-group">
+                    <label for="username" class="">Email</label>
+                    <input class="form-control"type="text" name="username" id="username" placeholder="Enter your email">
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input class="form-control"type="password" name="password" id="password" placeholder="Enter your password">
+                </div>
+                <div class="input-group">
+                    <label for="role">Role</label>
+                    <select class="form-control" name="role" id="role">
+                        <option value="STUDENT" >STUDENT</option>
+                        <option value="TEACHER">TEACHER</option>
+                        <option value="ADMIN">ADMIN</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn">Login</button>
+                <p>Dont have an account? <a href="register">Register Here</a></p>
+            </form>
+        </div>
+    </div>
+    
+
+
+
+
+ 
+    
 </body>
 </html>
