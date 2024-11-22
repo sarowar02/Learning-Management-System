@@ -1,0 +1,302 @@
+@font-face {
+    font-family: Googlesans;
+    src: url(Fonts/GoogleSans-Regular.ttf);
+}
+
+* {
+    font-family: Googlesans;
+    font-weight: 200;
+    color: #3c4043;
+}
+
+body {
+    margin: auto;
+}
+
+.maindev {
+    height: 91vh;
+    width: 100%;
+    display: flex;
+    justify-content: baseline;
+}
+
+.classtext {
+    display: inline-block;
+    color: #5f6368;
+}
+
+.classtext a {
+    text-decoration: none;
+}
+
+nav {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    align-items: center;
+    border-bottom: solid 0.6px rgb(218, 220, 224);
+}
+
+.navleft {
+    height: 7vh;
+    width: 17%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 7px;
+}
+
+.navright {
+    height: 7vh;
+    width: 12%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.classroomicon {
+    height: 28px;
+    width: 28px;
+}
+
+.avataricon {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+
+.mainsidebar {
+    height: 91vh;
+    width: 20%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    border-right: solid 0.6px rgb(218, 220, 224);
+    padding-left: 10px;
+}
+
+.firstsidebar {
+    height: 11vh;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    border-bottom: solid 0.6px rgb(218, 220, 224);
+}
+
+.Buttons {
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.Buttons label {
+    margin-left: 15px;
+    font-size: medium;
+}
+
+.Buttons2 label {
+    margin-left: 15px;
+    font-size: medium;
+}
+
+button {
+    height: 5vh;
+    width: 100%;
+    outline: none;
+    border: none;
+    display: flex;
+    align-items: center;
+    background-color: transparent;
+}
+
+.Secondsidebar {
+    height: 18vh;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+    border-bottom: solid 0.6px rgb(218, 220, 224);
+}
+
+.Buttons2 {
+    height: 5vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.green {
+    background-color: green;
+    border-radius: 50%;
+    color: white;
+    height: 28px;
+    width: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#arrow {
+    position: absolute;
+    left: -4px;
+}
+
+.thirdsidebar {
+    height: 11vh;
+    width: 100%;
+    display: flex;
+    box-sizing: border-box;
+    flex-wrap: wrap;
+}
+
+.Homebutton {
+    background-color: #4285f4 !important;
+}
+
+button:hover {
+    background-color: rgb(218, 220, 224);
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: -10px;
+    padding-left: 16px;
+}
+
+button:focus {
+    background-color: #959697ab;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    margin-left: -10px;
+    padding-left: 16px;
+}
+
+.classtext {
+    text-decoration: none;
+}
+
+.classtext:hover {
+    text-decoration: underline;
+    color: #1e8e3e;
+}
+
+nav span:hover {
+    background-color: rgb(218, 220, 224);
+    border-radius: 50%;
+    margin: -5px;
+    padding: 5px;
+}
+
+.boxes span:hover {
+    background-color: rgb(218, 220, 224);
+    border-radius: 50%;
+    margin: -5px;
+    padding: 5px;
+}
+
+.topofbox span:hover {
+    background-color: rgb(41, 41, 41);
+    border-radius: 50%;
+}
+
+.avataricon:hover {
+    background-color: rgb(218, 220, 224);
+    border-radius: 50%;
+    margin: -2px;
+    padding: 2px;
+}
+
+.classroomicon:hover {
+    background-color: rgb(218, 220, 224);
+    border-radius: 50%;
+    margin: -2px;
+    padding: 2px;
+}
+
+.leftarea {
+    height: 91vh;
+    width: 80%;
+    display: flex;
+}
+
+.boxes {
+    height: 300px;
+    width: 300px;
+    border: solid 0.6px rgb(218, 220, 224);
+    display: flex;
+    flex-direction: column;
+    margin: 25px;
+    border-radius: 15px;
+}
+
+.topofbox {
+    height: 100px;
+    width: 300px;
+    background-color: green;
+    text-align: start;
+    border-top-right-radius: 15px;
+    border-top-left-radius: 15px;
+    position: relative;
+}
+
+.topofbox h1 {
+    font-size: larger;
+    color: white;
+    padding-left: 20px;
+}
+
+.topofbox p {
+    font-size: small;
+    margin-top: -5px;
+    color: white;
+    padding-left: 20px;
+}
+
+.centerofbox {
+    height: 137px;
+    width: 300px;
+    position: relative;
+}
+
+.boximg {
+    height: 75px;
+    width: 75px;
+    position: absolute;
+    border-radius: 50%;
+    right: 15px;
+    top: -35px;
+}
+
+.bottomofbox {
+    height: 57px;
+    width: 300px;
+    position: relative;
+    border-top: solid 0.6px rgb(218, 220, 224);
+}
+
+#profile {
+    position: absolute;
+    right: 60px;
+    top: 20px;
+}
+
+#folder {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+#dots {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    color: white;
+}
+
+.boximg:hover {
+    margin: -5px;
+    background-color: #3c40432b;
+    padding: 5px;
+}
