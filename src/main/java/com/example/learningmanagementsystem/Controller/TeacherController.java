@@ -1,7 +1,9 @@
 package com.example.learningmanagementsystem.Controller;
 
+import com.example.learningmanagementsystem.Model.ClassRoom;
 import com.example.learningmanagementsystem.Model.ClassRoutine;
 import com.example.learningmanagementsystem.Model.User;
+import com.example.learningmanagementsystem.Repository.ClassRoomRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -24,6 +26,7 @@ class TeacherController {
 
     @Autowired
     private ClassRoutineRepository ClassRoutineRepository;
+
     @GetMapping("/teacher")
     public String teacherPage(Model model, Authentication authentication) {
         User teacher = UserRepository.findByEmail(authentication.getName());
@@ -91,9 +94,31 @@ class TeacherController {
         return "/classRoom";
     }
 
+}
 
+@Controller
+class ClassRoomController{
+    @Autowired
+    private ClassRoomRepository ClassRoomRepository;
 
+    @Autowired
+    private UserRepository UserRepository;
+   @PostMapping("/teacher/create-classroom")
+   public String CreateClassRoom(@RequestParam String CourseName, @RequestParam String CourseCode, @RequestParam String ClassCode,Authentication authentication,Model model)
+    {
+        ClassRoom classRoom = new ClassRoom(CourseName, CourseCode, ClassCode,authentication.getName());
+        ClassRoomRepository.save(classRoom);
 
-
-
+        model.addAttribute("classRoom", classRoom);
+        return "redirect:/teacher/courses";
+    }
+    @GetMapping("/teacher/courses")
+    public String courses(Model model,Authentication authentication)
+    {
+        User user = UserRepository.findByEmail(authentication.getName());
+        List<ClassRoom> classRooms = ClassRoomRepository.findAll();
+        model.addAttribute("classRooms", classRooms);
+        model.addAttribute("teacherName",user.getFirstname()+" "+user.getLastname());
+        return "classroom";
+    }
 }
