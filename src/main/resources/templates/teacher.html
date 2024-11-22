@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>LMS-techerHomePage</title>
-    <link rel="stylesheet" href="sts.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <style>
         @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
@@ -142,7 +143,7 @@
             text-decoration: none;
             color: rgb(41, 41, 41);
             text-transform: uppercase;
-            font-size: 15x;
+            font-size: 15px;
             font-weight: bold;
         }
 
@@ -172,7 +173,13 @@
 
         }
 
-
+        .form-input{
+            width: 200px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background: #f9f9f9;
+        }
 
         .container .box-container{
             display: grid;
@@ -232,12 +239,19 @@
 
     </style>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+    <script>
+        function showClassRoutine() {
+            document.getElementById('mainContent').style.display = 'none';
+            document.getElementById('classRoutine').style.display = 'block';
+    }
+
+    </script>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="sidebar">
-        <h2>Sidebar</h2>
+        <h2 th:text="${routines[0].teacherName}"></h2>
         <ul>
             <li><a href="#"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
@@ -245,7 +259,7 @@
             <li><a href="topicSummary"><i class="fas fa-project-diagram"></i>Topic Summary</a></li>
             <li><a href="grading"><i class="fas fa-blog"></i>Grading</a></li>
             <li><a href="#"><i class="fas fa-address-book"></i>Contact</a></li>
-            <li><a href="#"><i class="fas fa-map-pin"></i>Map</a></li>
+            <li><a href="#" onclick="showClassRoutine()"><i class="fas fa-map-pin"></i>Class Routine</a></li>
         </ul>
         <div class="social_media">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -257,7 +271,7 @@
         <div class="mai">
             <header>
                 <div class="logo">
-                    <img src="images/CS.png" alt="logo" />
+                    <img src="image/CS.png" alt="logo" />
                 </div>
                 <div class="navi">
 
@@ -281,7 +295,7 @@
 
 
 
-            <div class="box-container">
+            <div class="box-container" id="mainContent">
 
                 <div class="box">
                     <img src="image/icon-1.png" alt="">
@@ -322,9 +336,117 @@
 
             </div>
 
+            <div id="classRoutine" style="display:none;">
+                <h2>Class Routine</h2>
+                        <form action="/teacher/add-routine" method="post">
+                            <label for="course_code">Course_id:</label>
+                            <input class="form-input" type="text" id="course_code" name="course_code" required>
+
+                            <label for="semester">Semester:</label>
+                            <input class="form-input" type="text" id="semester" name="semester" required>
+
+                            <label for="subject">Subject:</label>
+                            <input class="form-input" type="text" id="subject" name="subject" required>
+
+                            <label for="room">Room:</label>
+                            <input class="form-input" type="text" id="room" name="room" required>
+                            <br> <br>
+                            <label for="day">Day:</label>
+                            <input class="form-input" type="text" id="day" name="day" required>
+
+                            <label for="time">Time:</label>
+                            <input class="form-input" type="text" id="time" name="time" required>
+
+                            <button type="submit" class="btn btn-success">Add Routine</button>
+
+                        </form>
+                <br><br>
+                <h3>Your Class Routines</h3>
+                <table class="table table-primary">
+                    <thead>
+                    <tr>
+                        <th>CourseCode</th>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                        <th>Teacher Name</th>
+                        <th>Room</th>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="routine : ${routines}">
+                        <td th:text="${routine.courseCode}"></td>
+                        <td th:text="${routine.semester}"></td>
+                        <td th:text="${routine.subject}"></td>
+                        <td th:text="${routine.teacherName}"></td>
+                        <td th:text="${routine.room}"></td>
+                        <td th:text="${routine.day}"></td>
+                        <td th:text="${routine.time}"></td>
+
+                        <td>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">
+                                Update
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Routine</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form action="/teacher/classRoutine/update-routine" method="post">
+                                                <label for="course_code">Course_id:</label>
+                                                <input class="form-control" type="text" th:value="${routine.courseCode}" name="course_code" required readonly >
+                                                <br>
+                                                <label for="semester">Semester:</label>
+                                                <input class="form-control" type="text" th:value="${routine.semester}" name="semester" required>
+                                                <br>
+                                                <label for="subject">Subject:</label>
+                                                <input class="form-control" type="text" th:value="${routine.subject}" name="subject" required>
+                                                <br>
+
+                                                <label for="room">Room:</label>
+                                                <input class="form-control" type="text" th:value="${routine.room}" name="room" required>
+
+                                                <br>
+                                                <label for="day">Day:</label>
+                                                <input class="form-control" type="text" th:value="${routine.day}" name="day" required>
+                                                <br>
+
+                                                <label for="time">Time:</label>
+                                                <input class="form-control" type="text" th:value="${routine.time}" name="time" required>
+                                                <br> <br>
+
+                                                <button type="submit" class="btn btn-success">Update Routine</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a th:href="@{/teacher/classRoutine/delete-routine(id=${routine.courseCode})}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+
         </div>
 
 
-    </div></div>
+    </div>
+
+
+
+
+</div>
 </body>
 </html>
