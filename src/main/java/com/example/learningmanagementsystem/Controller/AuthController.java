@@ -36,7 +36,7 @@ public class AuthController {
         user.setPassword(passwordEncoder.encode(password));
         user.setRole(role);
         userRepository.save(user);
-        return "redirect:/";
+        return "redirect:/login";
     }
 
     @GetMapping("/login")
