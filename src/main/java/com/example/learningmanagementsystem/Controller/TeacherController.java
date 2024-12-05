@@ -2,6 +2,7 @@ package com.example.learningmanagementsystem.Controller;
 
 import com.example.learningmanagementsystem.Model.ClassRoom;
 import com.example.learningmanagementsystem.Model.ClassRoutine;
+import com.example.learningmanagementsystem.Model.Topics;
 import com.example.learningmanagementsystem.Model.User;
 import com.example.learningmanagementsystem.Repository.ClassRoomRepository;
 import jakarta.transaction.Transactional;
@@ -14,7 +15,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.example.learningmanagementsystem.Repository.UserRepository;
 import com.example.learningmanagementsystem.Repository.ClassRoutineRepository;
+import com.example.learningmanagementsystem.Repository.TopicRepository;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -32,6 +36,7 @@ class TeacherController {
         User teacher = UserRepository.findByEmail(authentication.getName());
         List<ClassRoutine> routines = ClassRoutineRepository.findByTeacherEmail(teacher.getEmail());
         model.addAttribute("routines", routines);
+        model.addAttribute("teacherName", teacher.getFirstname()+ " " + teacher.getLastname());
         return "teacher";
     }
 
@@ -40,7 +45,7 @@ class TeacherController {
         User teacher = UserRepository.findByEmail(authentication.getName());
         List<ClassRoutine> routines = ClassRoutineRepository.findByTeacherEmail(teacher.getEmail());
         model.addAttribute("routines", routines);
-        return "teacher";
+        return "classroutine";
     }
     @PostMapping("/teacher/add-routine")
     public String addRoutine(@RequestParam String course_code,@RequestParam String subject , @RequestParam String room, @RequestParam String day,@RequestParam String semester,@RequestParam String time, Authentication authentication) {
@@ -79,20 +84,13 @@ class TeacherController {
         return "redirect:/teacher/classRoutine";
     }
 
-
-
-    @GetMapping("/topicTime")
-    private String topicTime()
-    {
-        return "/topicTime";
+    @GetMapping("/teacher/courses/class")
+    public String classPage(@RequestParam String id, Model model, Authentication authentication) {
+        User teacher = UserRepository.findByEmail(authentication.getName());
+        model.addAttribute("courseId", id);
+        return "classroom";
     }
 
-
-    @GetMapping("/classRoom")
-    private String classRoom()
-    {
-        return "/classRoom";
-    }
 
 }
 
@@ -103,6 +101,9 @@ class ClassRoomController{
 
     @Autowired
     private UserRepository UserRepository;
+
+    @Autowired
+    private TopicRepository TopicRepository;
    @PostMapping("/teacher/create-classroom")
    public String CreateClassRoom(@RequestParam String CourseName, @RequestParam String CourseCode, @RequestParam String ClassCode,Authentication authentication,Model model)
     {
@@ -119,6 +120,30 @@ class ClassRoomController{
         List<ClassRoom> classRooms = ClassRoomRepository.findAll();
         model.addAttribute("classRooms", classRooms);
         model.addAttribute("teacherName",user.getFirstname()+" "+user.getLastname());
-        return "classroom";
+        return "courses";
+    }
+
+    @GetMapping("/classroom/topicList")
+    public String topicList(@RequestParam String id, Model model, Authentication authentication) {
+        User teacher = UserRepository.findByEmail(authentication.getName());
+        List<Topics> topics = TopicRepository.findByCourseCode(id);
+        model.addAttribute("topics", topics);
+        model.addAttribute("user", teacher);
+        model.addAttribute("courseId", id);
+        return "topicList";
+
+    }
+    @PostMapping("/teacher/courses/classroom/addTopic")
+    public String addTopic(@RequestParam String topicName,@RequestParam String id,Model model, Authentication authentication) {
+        User teacher = UserRepository.findByEmail(authentication.getName());
+        LocalDate currentDate = LocalDate.now();
+
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+        String date = currentDate.format(formatter);
+        Topics topic = new Topics(topicName,date,id);
+        TopicRepository.save(topic);
+        return "redirect:/classroom/topicList";
+
     }
 }

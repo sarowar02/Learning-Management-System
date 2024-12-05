@@ -244,7 +244,7 @@
 
 <div class="wrapper">
     <div class="sidebar">
-        <h2 ></h2>
+        <h2 th:text="${teacherName}"></h2>
         <ul>
             <li><a href="/teacher"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
@@ -252,7 +252,7 @@
             <li><a href="topicSummary"><i class="fas fa-project-diagram"></i>Topic Summary</a></li>
             <li><a href="grading"><i class="fas fa-blog"></i>Grading</a></li>
             <li><a href="/teacher/courses"><i class="fas fa-address-book"></i>Courses</a></li>
-            <li><a href="/teacher/classRoutine" ><i class="fas fa-map-pin"></i>Class Routine</a></li>
+            <li><a href="/teacher/classRoutine"><i class="fas fa-map-pin"></i>Class Routine</a></li>
         </ul>
         <div class="social_media">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -284,11 +284,20 @@
         <!--  -->
 
 
-<!--        <div class="container">-->
-
         <div class="container">
 
-            <a th:href="@{/classroom/topicList(id=${courseId})}" class="btn btn-warning">Topic List</a>
+            <div class="box-container" id="mainContent">
+                <div class="box" th:each="classroom: ${classRooms}">
+                    <img src="image/icon-1.png" alt="">
+                    <h3 th:text="${classroom.courseName}"></h3>
+                    <h5 th:text="${classroom.courseCode}"></h5>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus, commodi?</p>
+                    <a th:href="@{/teacher/courses/class(id=${classroom.courseCode})}" class="btn">Enter class</a>
+                </div>
+
+            </div>
+
+        </div>
 
 
     </div>
