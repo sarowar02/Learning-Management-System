@@ -288,10 +288,136 @@
 
         <div class="container">
 
+
             <a th:href="@{/classroom/topicList(id=${courseId})}" class="btn btn-warning">Topic List</a>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#materialModal">Add Material</button>
+            <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#addAnnounceModal">Add Announcement</button>
+
+            <!-- Add Material Modal -->
+            <div class="modal fade" id="materialModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="addModalLabel">Add Material</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/teacher/courses/classroom/addMaterial(courseCode=${courseId})}" method="post" enctype="multipart/form-data">
+                                <label for="file">File:</label>
+                                <input class="form-control" type="file" name="file" required>
+                                <br> <br>
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--add announcement modal-->
+
+            <div class="modal fade" id="addAnnounceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="announceModalLabel">Add Announcement</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form th:action="@{/teacher/courses/classroom/addAnnouncement(courseCode=${courseId})}" method="post">
+
+                                <label for="title">Title:</label>
+                                <input class="form-control" type="text"  name="title" required>
+                                <br>
+                                    <label for="desc">Description:</label>
+                                    <textarea class="form-control" placeholder="description" id="desc" name="desc"></textarea>
+                                <br> <br>
+
+                                <button type="submit" class="btn btn-success">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
 
-    </div>
+          <!--Announcement Section -->
+            <div class="announceSection">
+                <h2>Recent Announcement</h2>
+                <table class="table table-primary">
+                    <thead>
+                    <tr>
+                        <th>Tittle</th>
+                        <th>Description</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="annment,iterStat : ${announcements}">
+                        <td th:text="${annment.title}"></td>
+                        <td th:text="${annment.description}"></td>
+                        <td th:text="${annment.date}"></td>
+
+                        <td>
+
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" th:data-bs-target="'#updateModal' + ${iterStat.index}">
+                                Update
+                            </button>
+
+                            <!-- Modal -->
+                            <div class="modal fade" th:id="'updateModal' + ${iterStat.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Update Announcements</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form th:action="@{/teacher/courses/classroom/updateAnnouncement(id=${annment.id})}" method="post">
+                                                <label for="updatetitle">Title:</label>
+                                                <input class="form-control" type="text"  th:value="${annment.title}" name="updatetitle" required>
+                                                <br>
+
+                                                    <label for="updatedesc">Description:</label>
+                                                    <textarea class="form-control" th:text="${annment.description}" name="updatedesc"></textarea>
+                                                <br> <br>
+
+                                                <button type="submit" class="btn btn-success">Update</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <a th:href="@{/teacher/courses/classroom/deleteAnnouncement(id=${annment.id})}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="materialSection">
+                <h2>Recent Materials</h2>
+                <table class="table table-primary">
+                    <thead>
+                    <tr>
+                        <th>File</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="material,iterStat : ${materials}">
+                        <td th:text="${material.file}"></td>
+                        <td th:text="${material.date}"></td>
+                        <td>
+                            <a th:href="@{/teacher/courses/classroom/deleteMaterial(id=${material.id})}" class="btn btn-danger">Delete</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
 
 
 
