@@ -146,4 +146,11 @@ class ClassRoomController{
         return "redirect:/classroom/topicList";
 
     }
+    @GetMapping("/teacher/courses/classroom/deleteTopic")
+    public String deleteTopic(Long id) {
+
+        TopicRepository.deleteById(id);
+        return "redirect:/classroom/topicList";
+
+    }
 }

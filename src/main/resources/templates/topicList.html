@@ -142,7 +142,7 @@
             text-decoration: none;
             color: rgb(41, 41, 41);
             text-transform: uppercase;
-            font-size: 15x;
+            font-size: 15px;
             font-weight: bold;
         }
 
@@ -307,7 +307,7 @@
                       <td th:text="${topic.topicName}"></td>
                       <td th:text="${topic.created_at}"></td>
                       <td>
-                          <a th:href="@{/teacher/classRoutine/delete-topic(id=${courseId})}" class="btn btn-danger">Delete</a>
+                          <a th:href="@{/teacher/courses/classroom/deleteTopic(id=${topic.id})}" class="btn btn-danger">Delete</a>
                       </td>
                   </tr>
                   </tbody>
