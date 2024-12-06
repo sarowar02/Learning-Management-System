@@ -5,239 +5,7 @@
     <title>LMS-techerHomePage</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
-
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            list-style: none;
-            text-decoration: none;
-            font-family: 'Josefin Sans', sans-serif;
-        }
-
-        body{
-            background-color: #f3f5f9;
-        }
-
-        .wrapper{
-            display: flex;
-            position: relative;
-        }
-
-        .wrapper .sidebar{
-            width: 200px;
-            height: 100%;
-            background: #4b4276;
-            padding: 30px 0px;
-            position: fixed;
-        }
-
-        .wrapper .sidebar h2{
-            color: #fff;
-            text-transform: uppercase;
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .wrapper .sidebar ul li{
-            padding: 15px;
-            border-bottom: 1px solid #bdb8d7;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
-            border-top: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .wrapper .sidebar ul li a{
-            color: #bdb8d7;
-            display: block;
-        }
-
-        .wrapper .sidebar ul li a .fas{
-            width: 25px;
-        }
-
-        .wrapper .sidebar ul li:hover{
-            background-color: #594f8d;
-        }
-
-        .wrapper .sidebar ul li:hover a{
-            color: #fff;
-        }
-
-        .wrapper .sidebar .social_media{
-            position: absolute;
-            bottom: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-        }
-
-        .wrapper .sidebar .social_media a{
-            display: block;
-            width: 40px;
-            background: #594f8d;
-            height: 40px;
-            line-height: 45px;
-            text-align: center;
-            margin: 0 5px;
-            color: #bdb8d7;
-            border-top-left-radius: 5px;
-            border-top-right-radius: 5px;
-        }
-
-        .wrapper .main_content{
-            width: 100%;
-            margin-left: 200px;
-        }
-
-        .wrapper .main_content .header{
-            padding: 20px;
-            background: #fff;
-            color: #717171;
-            border-bottom: 1px solid #e0e4e8;
-        }
-
-        .wrapper .main_content .info{
-            margin: 20px;
-            color: #717171;
-            line-height: 25px;
-        }
-
-        .wrapper .main_content .info div{
-            margin-bottom: 20px;
-        }
-
-        .mai {
-            width: 100%;
-            height: 70px;
-            position: fixed;
-            top: 0;
-            /* background-color: #fff; */
-            background-color: antiquewhite;
-        }
-        header div {
-            float: left;
-            justify-content: space-between;
-        }
-        header .logo {
-            margin-left: 20px;
-            padding: 20px;
-        }
-
-        header .navi {
-            position: absolute;
-            top: 0;
-            right: 0;
-            margin-right: 300px;
-        }
-        header .navi ul {
-            list-style: none;
-        }
-        header .navi li {
-            float: left;
-            padding-right: 40px;
-            padding-top: 10px;
-        }
-        header .navi li a {
-            text-decoration: none;
-            color: rgb(41, 41, 41);
-            text-transform: uppercase;
-            font-size: 15px;
-            font-weight: bold;
-        }
-
-        header .navi li a:hover {
-            color: crimson;
-        }
-
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
-
-        *{
-            font-family: 'Poppins', sans-serif;
-            margin:0; padding:0;
-            box-sizing: border-box;
-            outline: none; border:none;
-            text-decoration: none;
-            text-transform: capitalize;
-            transition: .2s linear;
-        }
-
-        .container{
-
-            /* padding:15px 9%; */
-
-            padding-left: 70px;
-            padding-top: 200px;
-            padding-right: 50px;
-
-        }
-
-        .form-input{
-            width: 200px;
-            padding: 10px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            background: #f9f9f9;
-        }
-
-        .container .box-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap:15px;
-        }
-
-        .container .box-container .box{
-            box-shadow: 0 5px 10px rgba(0,0,0,.2);
-            border-radius: 5px;
-            background: #fff;
-            text-align: center;
-            padding:30px 20px;
-        }
-
-        .container .box-container .box img{
-            height: 80px;
-        }
-
-        .container .box-container .box h3{
-            color:#444;
-            font-size: 22px;
-            padding:10px 0;
-        }
-
-        .container .box-container .box p{
-            color:#777;
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .container .box-container .box .btn{
-            margin-top: 10px;
-            display: inline-block;
-            background:green;
-            color:#fff;
-            font-size: 17px;
-            border-radius: 5px;
-            padding: 8px 25px;
-
-        }
-
-        .container .box-container .box .btn:hover{
-            letter-spacing: 1px;
-        }
-
-        .container .box-container .box:hover{
-            box-shadow: 0 10px 15px rgba(0,0,0,.3);
-            transform: scale(1.03);
-        }
-
-        @media (max-width:768px){
-            .container{
-                padding:20px;
-            }
-        }
-
-    </style>
+    <link href="" th:href="@{/css/style2.css}" rel="stylesheet" />
 </head>
 <body>
 
@@ -256,17 +24,12 @@
 
             <!--li><a href="#" onclick="showClassRoutine()"><i class="fas fa-map-pin"></i>Class Routine</a></li>-->
         </ul>
-        <div class="social_media">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-twitter"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-        </div>
     </div>
     <div class="main_content">
         <div class="mai">
             <header>
                 <div class="logo">
-                    <img src="image/CS.png" alt="logo" />
+                    <img th:src="@{image/CSE.png}" alt="logo">
                 </div>
                 <div class="navi">
 
@@ -275,7 +38,7 @@
                         <li><a href="#"> About </a></li>
                         <li><a href="TeacherDashboard">Something</a></li>
                         <li>
-                            <a href="login" style="color: crimson">Login OR Register</a>
+                            <a href="/logout" style="color: crimson">Logout</a>
                         </li>
                     </ul>
                 </div>

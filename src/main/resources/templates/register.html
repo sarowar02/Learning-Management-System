@@ -16,7 +16,7 @@
 
     <header>
       <div class="logo">
-        <img src="" alt="cseLogo" />
+        <img th:src="@{image/CSE.png}" alt="cseLogo" />
       </div>
       <div class="nav">
         <input type="checkbox" id="check" />
@@ -29,7 +29,7 @@
           <li><a href="#"> About </a></li>
           <li><a href="#">Something</a></li>
           <li>
-            <a href="sigin" style="color: crimson">Login OR Register</a>
+            <a href="/login" style="color: crimson">Login</a>
           </li>
         </ul>
         
@@ -51,14 +51,14 @@
       <form action="/register" method="post">
         <!--First name-->
         
-<!--SUCCESS message-->
-<!--       <div>-->
-<!--         <th:block th:if="${session.msg}">-->
-<!--          <p class="success" >[[${session.msg}]]</p>-->
-<!--          &lt;!&ndash;Show then remove message  &ndash;&gt;-->
-<!--          <th:block th:text="${@userServiceImplementation.removeSessionMessage()}"></th:block>-->
-<!--       </th:block>-->
-<!--    </div>-->
+SUCCESS message
+       <div>
+         <th:block th:if="${session.msg}">
+          <p class="success" >[[${session.msg}]]</p>
+          <!--Show then remove message  -->
+          <th:block th:text="${@userServiceImplementation.removeSessionMessage()}"></th:block>
+       </th:block>
+    </div>
     
         <div class="box">
           <label for="firstname" class="fl fontLabel"> First Name </label>

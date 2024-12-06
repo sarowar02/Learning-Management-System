@@ -1,26 +1,23 @@
 package com.example.learningmanagementsystem.Controller;
 
-import com.example.learningmanagementsystem.Model.ClassRoom;
-import com.example.learningmanagementsystem.Model.ClassRoutine;
-import com.example.learningmanagementsystem.Model.Topics;
-import com.example.learningmanagementsystem.Model.User;
-import com.example.learningmanagementsystem.Repository.ClassRoomRepository;
-import jakarta.transaction.Transactional;
+import com.example.learningmanagementsystem.Model.*;
+import com.example.learningmanagementsystem.Repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.UrlResource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import com.example.learningmanagementsystem.Repository.UserRepository;
-import com.example.learningmanagementsystem.Repository.ClassRoutineRepository;
-import com.example.learningmanagementsystem.Repository.TopicRepository;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
+import java.net.MalformedURLException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.List;
-import java.util.Optional;
 
 @Controller
 class StudentController {
@@ -36,10 +33,21 @@ class StudentController {
     @Autowired
     private TopicRepository TopicRepository;
 
+    @Autowired
+    private MaterialRepository MaterialRepository;
+
+    @Autowired
+    private AnnouncementRepository AnnouncementRepository;
+
     @GetMapping("/student")
-    public String studentPage()
+    public String studentPage(Model model, Authentication authentication)
     {
-        return "/student";
+        User user = UserRepository.findByEmail(authentication.getName());
+        List<ClassRoom> classRooms = ClassRoomRepository.findAll();
+        model.addAttribute("classRooms", classRooms);
+        model.addAttribute("teacherName",user.getFirstname()+" "+user.getLastname());
+
+        return "studentPart/sIndex";
     }
 
 
@@ -49,11 +57,7 @@ class StudentController {
     @GetMapping("/student/showCourses")
     public String courses(Model model, Authentication authentication)
     {
-        User user = UserRepository.findByEmail(authentication.getName());
-        List<ClassRoom> classRooms = ClassRoomRepository.findAll();
-        model.addAttribute("classRooms", classRooms);
-        model.addAttribute("teacherName",user.getFirstname()+" "+user.getLastname());
-        return "studentPart/sShowCourses";
+        return "redirect:/student";
     }
 
 
@@ -64,9 +68,7 @@ class StudentController {
         for (ClassRoom classRoom : classRooms) {
             System.out.println("ClassCode: " + classRoom.getClassCode() + ", CourseCode: " + classRoom.getCourseCode());
             if (classRoom.getClassCode().equals(joinCode) && classRoom.getCourseCode().equals(ClassCode)) {
-                System.out.println("Matched ClassRoom: " + classRoom);
-                model.addAttribute("classRoom", classRoom);
-                return "studentPart/enterCourse"; // Proceed to the view
+                return "redirect:/sShowCourses/enterCourse?courseCode=" + classRoom.getCourseCode();
             }
         }
 
@@ -81,8 +83,9 @@ class StudentController {
     @GetMapping("/sShowCourses/enterCourse")
     public String enterCourses(@RequestParam String courseCode, Model model, Authentication authentication) {
 
-        List<Topics> topicsList = TopicRepository.findByCourseCode(courseCode);
-        model.addAttribute("topics", topicsList);
+        model.addAttribute("topics", TopicRepository.findByCourseCode(courseCode));
+        model.addAttribute("materials", MaterialRepository.findByCourseCodeOrderByDateDesc(courseCode));
+        model.addAttribute("announcements", AnnouncementRepository.findByCourseCodeOrderByDateDesc(courseCode));
         return "studentPart/enterCourse";
     }
 
@@ -98,21 +101,23 @@ class StudentController {
         return "studentPart/sShowRoutine";
     }
 
+    @GetMapping("student/downloadMaterial")
+    public ResponseEntity<Resource> downloadMaterial(@RequestParam String filename) {
+        try {
+            Path file = Paths.get("src/main/resources/static/uploads/" + filename);
+            Resource resource = new UrlResource(file.toUri());
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            if (resource.exists() || resource.isReadable()) {
+                return ResponseEntity.ok()
+                        .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + resource.getFilename() + "\"")
+                        .body(resource);
+            } else {
+                throw new RuntimeException("Could not read the file!");
+            }
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Error: " + e.getMessage());
+        }
+    }
 
 
 
