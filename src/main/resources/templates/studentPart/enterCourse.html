@@ -1,10 +1,9 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>LMS-techerHomePage</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <title>Side Navigation Bar</title>
+    <link rel="stylesheet" href="sts.css">
     <style>
         @import url('https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap');
 
@@ -151,107 +150,84 @@
             color: crimson;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700&display=swap');
 
-        *{
-            font-family: 'Poppins', sans-serif;
-            margin:0; padding:0;
-            box-sizing: border-box;
-            outline: none; border:none;
-            text-decoration: none;
-            text-transform: capitalize;
-            transition: .2s linear;
-        }
 
-        .container{
 
-            /* padding:15px 9%; */
 
-            padding-left: 70px;
-            padding-top: 200px;
-            padding-right: 50px;
-
-        }
-
-        .form-input{
-            width: 200px;
-            padding: 10px;
-            border-radius: 5px;
+        input[type=text], select, textarea {
+            width: 40%;
+            padding: 12px;
             border: 1px solid #ccc;
-            background: #f9f9f9;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+
+
+        }
+        input[type=text], select{
+            font-size: 16px;
+
+
+        }
+        input[type=text], textarea{
+            font-size: 20px;
+
+
         }
 
-        .container .box-container{
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
-            gap:15px;
+        input[type=datetime-local], textarea{
+            font-size: 20px;
+
+
+        }
+        input[type=datetime-local], select, textarea {
+            width: 40%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+
+
         }
 
-        .container .box-container .box{
-            box-shadow: 0 5px 10px rgba(0,0,0,.2);
+        label{
+            font-size: 14px;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
             border-radius: 5px;
-            background: #fff;
-            text-align: center;
-            padding:30px 20px;
+            background-color: #f2f2f2;
+            margin-top: 200px;
+            margin-left: 450px;
         }
-
-        .container .box-container .box img{
-            height: 80px;
-        }
-
-        .container .box-container .box h3{
-            color:#444;
-            font-size: 22px;
-            padding:10px 0;
-        }
-
-        .container .box-container .box p{
-            color:#777;
-            font-size: 15px;
-            line-height: 1.8;
-        }
-
-        .container .box-container .box .btn{
-            margin-top: 10px;
-            display: inline-block;
-            background:green;
-            color:#fff;
-            font-size: 17px;
-            border-radius: 5px;
-            padding: 8px 25px;
-
-        }
-
-        .container .box-container .box .btn:hover{
-            letter-spacing: 1px;
-        }
-
-        .container .box-container .box:hover{
-            box-shadow: 0 10px 15px rgba(0,0,0,.3);
-            transform: scale(1.03);
-        }
-
-        @media (max-width:768px){
-            .container{
-                padding:20px;
-            }
-        }
-
     </style>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script>
-        function showClassRoutine() {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('classRoutine').style.display = 'block';
-        }
-
-    </script>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="sidebar">
-<!--        <h2 th:text="${routines[0].teacherName}"></h2>-->
+        <h2>Sidebar</h2>
         <ul>
             <li><a href="/student"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
@@ -264,6 +240,7 @@
 
             <!--            <li><a href="#" onclick="showClassRoutine()"><i class="fas fa-map-pin"></i>Class Routine</a></li>-->
         </ul>
+
         <div class="social_media">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-twitter"></i></a>
@@ -271,46 +248,52 @@
         </div>
     </div>
     <div class="main_content">
-
         <div class="mai">
             <header>
                 <div class="logo">
-                    <img src="image/CS.png" alt="logo" />
+                    <img src="images/CS.png" alt="logo" />
                 </div>
                 <div class="navi">
 
                     <ul>
-                        <li><a href="/" style="color: crimson">Home</a></li>
+                        <li><a href="index.html" style="color: crimson">Home</a></li>
                         <li><a href="#"> About </a></li>
-                        <li><a href="TeacherDashboard">Something</a></li>
+                        <li><a href="TeacherDashboard.html">Something</a></li>
                         <li>
-                            <a href="login" style="color: crimson">Login OR Register</a>
+                            <a href="login.html" style="color: crimson">Login OR Register</a>
                         </li>
                     </ul>
                 </div>
             </header>
         </div>
 
-
-        <!--  -->
-
-
         <div class="container">
 
+            <h3>Topics : </h3>
+            <table class="table table-primary">
+                <thead>
+                <tr>
+                    <th>Topic Name</th>
+                    <th>Created At</th>
+                    <th>Course Code</th>
 
-
-            <div class="box-container" id="mainContent">
-            </div>
-
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="topic : ${topics}">
+                    <td th:text="${topic.topicName}"></td>
+                    <td th:text="${topic.created_at}"></td>
+                </tr>
+                </tbody>
+            </table>
 
         </div>
 
-
     </div>
 
+    <!--topic list table-->
 
+</div>
 
-
-   </div>
 </body>
 </html>

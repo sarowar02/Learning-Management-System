@@ -238,20 +238,12 @@
         }
 
     </style>
-    <script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
-    <script>
-        function showClassRoutine() {
-            document.getElementById('mainContent').style.display = 'none';
-            document.getElementById('classRoutine').style.display = 'block';
-        }
-
-    </script>
 </head>
 <body>
 
 <div class="wrapper">
     <div class="sidebar">
-<!--        <h2 th:text="${routines[0].teacherName}"></h2>-->
+<!--        <h2 th:text="${teacherName}"></h2>-->
         <ul>
             <li><a href="/student"><i class="fas fa-home"></i>Home</a></li>
             <li><a href="#"><i class="fas fa-user"></i>Profile</a></li>
@@ -262,7 +254,7 @@
             <li><a href="/student/ShowRoutine"><i class="fas fa-address-book"></i>Show Routine</a></li>
 
 
-            <!--            <li><a href="#" onclick="showClassRoutine()"><i class="fas fa-map-pin"></i>Class Routine</a></li>-->
+            <!--li><a href="#" onclick="showClassRoutine()"><i class="fas fa-map-pin"></i>Class Routine</a></li>-->
         </ul>
         <div class="social_media">
             <a href="#"><i class="fab fa-facebook-f"></i></a>
@@ -271,7 +263,6 @@
         </div>
     </div>
     <div class="main_content">
-
         <div class="mai">
             <header>
                 <div class="logo">
@@ -295,14 +286,45 @@
         <!--  -->
 
 
+        <!--        <div class="container">-->
+
         <div class="container">
+            <div id="classRoutine">
+                <h2>Class Routine</h2>
 
 
 
-            <div class="box-container" id="mainContent">
+                <br><br>
+<!--                <h3>Your Class Routines</h3>-->
+                <table class="table table-primary">
+                    <thead>
+                    <tr>
+                        <th>CourseCode</th>
+                        <th>Semester</th>
+                        <th>Subject</th>
+                        <th>Teacher Name</th>
+                        <th>Room</th>
+                        <th>Day</th>
+                        <th>Time</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="routine : ${routines}">
+                        <td th:text="${routine.courseCode}"></td>
+                        <td th:text="${routine.semester}"></td>
+                        <td th:text="${routine.subject}"></td>
+                        <td th:text="${routine.teacherName}"></td>
+                        <td th:text="${routine.room}"></td>
+                        <td th:text="${routine.day}"></td>
+                        <td th:text="${routine.time}"></td>
+
+
+
+                    </tr>
+                    </tbody>
+                </table>
             </div>
-
-
         </div>
 
 
@@ -311,6 +333,6 @@
 
 
 
-   </div>
+</div>
 </body>
 </html>
