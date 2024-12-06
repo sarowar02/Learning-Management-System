@@ -8,9 +8,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ClassRoutineRepository extends JpaRepository<ClassRoutine, String> {
+public interface ClassRoutineRepository extends JpaRepository<ClassRoutine, Long> {
     List<ClassRoutine> findByTeacherEmail(String email);
     ClassRoutine findByCourseCode(String courseCode);
-    void deleteByCourseCode(String courseCode);
 
 }

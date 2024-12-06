@@ -326,7 +326,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr th:each="routine : ${routines}">
+                    <tr th:each="routine,iterStat : ${routines}">
                         <td th:text="${routine.courseCode}"></td>
                         <td th:text="${routine.semester}"></td>
                         <td th:text="${routine.subject}"></td>
@@ -338,12 +338,12 @@
                         <td>
 
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#updateModal">
+                            <button type="button" class="btn btn-warning" data-bs-toggle="modal" th:data-bs-target="'#updateModal'+${iterStat.index}">
                                 Update
                             </button>
 
                             <!-- Modal -->
-                            <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal fade" th:id="'updateModal'+${iterStat.index}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
                                         <div class="modal-header">
@@ -351,7 +351,7 @@
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body">
-                                            <form action="/teacher/classRoutine/update-routine" method="post">
+                                            <form th:action="@{/teacher/classRoutine/update-routine(id=${routine.id})}" method="post">
                                                 <label for="course_code">Course_id:</label>
                                                 <input class="form-control" type="text" th:value="${routine.courseCode}" name="course_code" required readonly >
                                                 <br>
@@ -380,7 +380,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a th:href="@{/teacher/classRoutine/delete-routine(id=${routine.courseCode})}" class="btn btn-danger">Delete</a>
+                            <a th:href="@{/teacher/classRoutine/delete-routine(id=${routine.id})}" class="btn btn-danger">Delete</a>
                         </td>
                     </tr>
                     </tbody>

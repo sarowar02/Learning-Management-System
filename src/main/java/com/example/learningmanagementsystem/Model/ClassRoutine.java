@@ -1,12 +1,16 @@
 package com.example.learningmanagementsystem.Model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
 public class ClassRoutine {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
     private String  courseCode;
     private String subject;
     private String teacherEmail;
@@ -35,6 +39,15 @@ public class ClassRoutine {
     public String getCourseCode() {
         return courseCode;
     }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public void settCourseCode(String courseCode) {
         this.courseCode= courseCode;
     }
