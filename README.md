@@ -2,4 +2,3 @@
 
 download intellij ide community version 
 clone the repo
-and contribute
